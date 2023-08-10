@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>ChatGPT Personal Knowledge Base</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Knowledge Base</h1>
+  </header>
+
+  <!--Nav Bar-->
+  <nav>
+    <ul>
+      <li><a href="#notes">My Notes</a></li>
+      <li><a href="#add-note">Add Note</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="search">
+      <h2>Search Notes</h2>
+      <input type="text" id="search-input" placeholder="Search...">
+      <button id="search-button">Search</button>
+    </section>
+
+    <section id="notes">
+      <h2>My Notes</h2>
+      <ul id="notes-list">
+        <li class="note">
+          <h3 class="note-title">Note Title 1</h3>
+          <p class="note-content">This is a snippet of the note content...</p>
+          <button class="edit-button">Edit</button>
+          <button class="delete-button">Delete</button>
+          <button class="save-button" style="display: none">Save</button>
+        </li>
+        <!-- More notes go here -->
+      </ul>
+    </section>
+
+    <section id="add-note">
+      <h2>Add a New Note</h2>
+      <form>
+        <label for="note-title">Title:</label>
+        <input type="text" id="note-title" name="note-title" required>
+
+        <label for="note-content">Content:</label>
+        <textarea id="note-content" name="note-content" rows="4" required></textarea>
+
+        <button type="submit" id="submit-button">Add Note</button>
+      </form>
+    </section>
+
+    <!-- Note details modal (optional) -->
+    <div id="note-details-modal">
+      <h3>Note Title</h3>
+      <p>Full note content...</p>
+      <button>Close</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Michael Frieri</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

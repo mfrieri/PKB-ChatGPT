@@ -28,3 +28,8 @@ footer {
   background-color: #007BFF;
   color: white;
 }
+
+.note-content{
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}

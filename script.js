@@ -4,7 +4,6 @@ const searchButton = document.querySelector('#search-button');
 const noteTitleInput = document.querySelector('#note-title');
 const noteContentInput = document.querySelector('#note-content')
 const noteSubmitButton = document.querySelector('#submit-button');
-const saveButton = document.querySelector('#save-button')
 const notesList = document.querySelector('#notes-list');
 
 
@@ -59,29 +58,27 @@ function noteSubmit(){
 }
 
 
-
+//edit existing note
 notesList.addEventListener('click', editNote => {
-  if (editNote.target.classList.contains('edit-button')){
-    const clickedEditButton = editNote.target;
-    const note = clickedEditButton.closest('.note');
-    const noteTitle = note.querySelector('.note-title').textContent;
-    const noteContent = note.querySelector('.note-content').textContent;
+  if (editNote.target.classList.contains('edit-button')) {
+    const note = editNote.target.closest('.note');
+    const noteTitle = note.querySelector('.note-title');
+    const noteContent = note.querySelector('.note-content');
 
+    // Make the title and content editable
+    noteTitle.contentEditable = true;
+    noteContent.contentEditable = true;
 
-    //Create input fields to edit Title + content
-    const titleInput = document.createElement('input');
-    titleInput.value = noteTitle.textContent;
-    const contentInput = document.createElement('textarea');
-    contentInput.value = noteContent.textContent;
+    noteTitle.focus();
+    noteContent.focus();
 
-    //Replace existing content with input fields
-    noteTitle.replaceWith(titleInput);
-    noteContent.replaceWith(contentInput);
-
-    //Show save button + hide edit
+    // Show the save button and hide the edit button
     const editButton = note.querySelector('.edit-button');
     editButton.style.display = 'none';
-    saveButton.style.display = 'inline-block';
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    saveButton.classList.add('save-button');
+    note.appendChild(saveButton);
   }
 });
 
@@ -89,29 +86,26 @@ notesList.addEventListener('click', editNote => {
 notesList.addEventListener('click', saveNote => {
   if (saveNote.target.classList.contains('save-button')){
     const note = saveNote.target.closest('.note');
-    const titleInput = note.querySelector('input');
-    const contentInput = note.querySelector('textarea');
-    const noteTitle = document.createElement('h3');
-    noteTitle.classList.add('note-title');
-    noteTitle.textContent = titleInput.value;
-    const noteContent = document.createElement('p');
-    noteContent.classList.add('note-content');
-    noteContent.textContent = contentInput.value;
+    const noteTitle = note.querySelector('.note-title');
+    const noteContent = note.querySelector('.note-content');
 
-    //replace input fields with edited content
-    titleInput.replaceWith(noteTitle);
-    contentInput.replaceWith(noteContent);
+    //disable editing on title + content
+    noteTitle.contentEditable = false;
+    noteContent.contentEditable = false;
 
     //show edit button and hide save
     const editButton = note.querySelector('.edit-button')
     editButton.style.display = 'inline-block';
-    saveButton.style.display = 'none'
+    saveNote.target.remove();
   }
 })
 
+
+//delete existing note
 notesList.addEventListener('click', deleteNote => {
   if (deleteNote.target.classList.contains('delete-button')){
     const clickedDeleteButton = deleteNote.target;
-    //Perform actions for editing note associated w click
+    
+    
   }
 });

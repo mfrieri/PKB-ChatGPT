@@ -104,8 +104,14 @@ notesList.addEventListener('click', saveNote => {
 //delete existing note
 notesList.addEventListener('click', deleteNote => {
   if (deleteNote.target.classList.contains('delete-button')){
-    const clickedDeleteButton = deleteNote.target;
-    
-    
+    const note = deleteNote.target.closest('.note');
+    const noteTitle = note.querySelector('.note-title').textContent;
+
+    //ask for confirmation
+    const confirmDelete = confirm(`Are you sure you want to delete the note "${noteTitle}"?`);
+
+    if (confirmDelete){
+      notesList.removeChild(note); //remove note element from list
+    }
   }
 });
